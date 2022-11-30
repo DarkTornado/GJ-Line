@@ -54,9 +54,10 @@ var pos = [
     {x: 200, y: 1400, dir: 1, sta: '지평'},
     {x: 1400, y: 800, dir: 1, sta: '신촌'},
     {x: 1200, y: 800, dir: 1, sta: '서울'}
-    ];
-    
-    function update() {
+];
+
+
+function update() {
     var req = new XMLHttpRequest();
     req.open('GET', 'https://darktornado.net/subway/gj-line/');
     req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -72,23 +73,23 @@ var pos = [
             //alert(e);
         }
     };
-    }
-    update();
-    
-    function applyData(data){
+}
+update();
+
+function applyData(data) {
     data = JSON.parse(data);
     const map = document.getElementById("map").innerHTML;
-    
+
     var src = '';
     data.forEach((e, i) => {
-    e.sta
-    src += train(pos[i].x, pos[i].y, pos[i].dir, e.up, true);
-    src += train(pos[i].x, pos[i].y, pos[i].dir, e.down, false);
+        e.sta
+        src += train(pos[i].x, pos[i].y, pos[i].dir, e.up, true);
+        src += train(pos[i].x, pos[i].y, pos[i].dir, e.down, false);
     });
     document.getElementById("map").innerHTML = map + src;
-    }
-    
-    function train(x, y, dir, type, isUp){
+}
+
+function train(x, y, dir, type, isUp) {
     if (!isUp) dir += 2;
     if (dir > 4) dir -= 4;
     var icons = ['no_train', 'train'];
@@ -97,16 +98,14 @@ var pos = [
     var yy = [0, -35, 0, 35];
     x = x - 20 + xx[dir];
     y = y - 20 + yy[dir];
-    return "<image xlink:href='images/"+icons[type]+".svg' x='"+x+"' y='"+y+"' width='40px' transform='rotate("+dirs[dir]+","+(x+20)+","+(y+20)+")'/>";
-    }
-    
-    
-    function onIconClicked(station) {
+    return "<image xlink:href='images/" + icons[type] + ".svg' x='" + x + "' y='" + y + "' width='40px' transform='rotate(" + dirs[dir] + "," + (x + 20) + "," + (y + 20) + ")'/>";
+}
+
+
+function onIconClicked(station) {
     alert('아이콘: ' + station);
-    }
-    
-    function onTextClicked(element) {
+}
+
+function onTextClicked(element) {
     alert('글자: ' + element.innerHTML.replace(/(<([^>]+)>)/g, ''));
-    }
-    
-    
+}
