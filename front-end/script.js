@@ -66,9 +66,7 @@ function update() {
     req.onreadystatechange = function(e) {
         if (this.readyState == 4 && req.status === 200) {
             data = (req.responseText + '').trim();
-            if (data != '') {
-                applyData(data);
-            }
+            applyData(data);
         } else {
             //alert(e);
         }
