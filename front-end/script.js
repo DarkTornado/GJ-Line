@@ -59,7 +59,7 @@ var pos = [
 
 function update() {
     var req = new XMLHttpRequest();
-    req.open('GET', 'https://darktornado.net/subway/gj-line/');
+    req.open('GET', 'https://api.darktornado.net/subway/gj-line/');
     req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     //req.setRequestHeader('Cache-Control', 'no-cache');
     req.send();
