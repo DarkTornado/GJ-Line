@@ -67,8 +67,6 @@ function update() {
         if (this.readyState == 4 && req.status === 200) {
             data = (req.responseText + '').trim();
             applyData(data);
-        } else {
-            //alert(e);
         }
     };
 }
