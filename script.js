@@ -58,19 +58,11 @@ var pos = [
 
 
 function update() {
-    var req = new XMLHttpRequest();
-    req.open('GET', 'https://api.darktornado.net/subway/gj-line/');
-    req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    //req.setRequestHeader('Cache-Control', 'no-cache');
-    req.send();
-    req.onreadystatechange = function(e) {
-        if (this.readyState == 4 && req.status === 200) {
-            data = (req.responseText + '').trim();
+    fetch('https://api.darktornado.net/subway/gj-line')
+        .then((response) => response.text())
+        .then((data) => {
             applyData(data);
-        } else {
-            //alert(e);
-        }
-    };
+        });
 }
 update();
 
