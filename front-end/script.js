@@ -58,13 +58,14 @@ var pos = [
 
 
 function update() {
-    fetch('https://api.darktornado.net/subway/gj-line')
+    fetch('back-end url')
         .then((response) => response.text())
         .then((data) => {
             applyData(data);
         });
 }
 update();
+setInterval(update, 10 * 1000);
 
 function applyData(data) {
     data = JSON.parse(data);
@@ -72,11 +73,11 @@ function applyData(data) {
 
     var src = '';
     data.forEach((e, i) => {
-        e.sta
         src += train(pos[i].x, pos[i].y, pos[i].dir, e.up, true);
         src += train(pos[i].x, pos[i].y, pos[i].dir, e.down, false);
     });
     document.getElementById("map").innerHTML = map + src;
+    console.log('updated');
 }
 
 function train(x, y, dir, type, isUp) {
