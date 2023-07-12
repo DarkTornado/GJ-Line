@@ -17,7 +17,6 @@ span.right {
   float: right;
 }
 
-
 /* 노선도 */
 .bold {
   font-family: NanumSquareBold;
@@ -57,4 +56,23 @@ text {
 
 text.info {
   font-size: 30px;
+}
+
+/* 반응형 처리 */
+
+div.map_mobile{
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  div.map_mobile{
+    display: block;
+  }
+  div.map_pc {
+    display: none;
+  }
+  text {
+    text-anchor: start;
+    font-size: 30px;
+  }
 }

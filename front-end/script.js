@@ -65,18 +65,37 @@ function update() {
         });
 }
 update();
-setInterval(update, 10 * 1000);
+//setInterval(update, 10 * 1000);
 
+var map = null;
 function applyData(data) {
     data = JSON.parse(data);
-    const map = document.getElementById("map").innerHTML;
 
-    var src = '';
-    data.forEach((e, i) => {
-        src += train(pos[i].x, pos[i].y, pos[i].dir, e.up, true);
-        src += train(pos[i].x, pos[i].y, pos[i].dir, e.down, false);
-    });
-    document.getElementById("map").innerHTML = map + src;
+    if (window.innerWidth >= 768) {  //PC에서 접속한 경우
+        var src = '';
+        if (map == null) map = document.getElementById("map").innerHTML;
+        data.forEach((e, i) => {
+            src += train(pos[i].x, pos[i].y, pos[i].dir, e.up, true);
+            src += train(pos[i].x, pos[i].y, pos[i].dir, e.down, false);
+        });
+        document.getElementById("map").innerHTML = map + src;
+    } else {
+        var src = '<svg id="map_mobile" width=100% viewBox="0 0 600 5400">';
+        src += '<polyline points="100,100 100,5300" fill="none" stroke="#77C4A3" />';
+        src += '<polyline points="100,2000 150,2050 350,2050 400,2100 400,2200" fill="none" stroke="#77C4A3" />';
+        var seoul = [data.pop()];
+        seoul.unshift(data.pop());
+        data.forEach((e, i) => {  //모바일에서 접속한 경우
+            var y = (i + 1) * 100;
+            src += station(100, y, e.station);
+            src += train_up(35, y, e.up);
+            src += train_down(65, y, e.down);
+        });
+        src += station(400, 2100, seoul[0].station) + train_up(335, 2100, seoul[0].up) + train_down(365, 2100, seoul[0].down);
+        src += station(400, 2200, seoul[1].station) + train_up(335, 2200, seoul[1].up) + train_down(365, 2200, seoul[1].down);
+        src += '</svg>';
+        document.getElementById("map_mobile").innerHTML = src;
+    }
     console.log('updated');
 }
 
@@ -90,6 +109,24 @@ function train(x, y, dir, type, isUp) {
     x = x - 20 + xx[dir];
     y = y - 20 + yy[dir];
     return "<image xlink:href='images/" + icons[type] + ".svg' x='" + x + "' y='" + y + "' width='40px' transform='rotate(" + dirs[dir] + "," + (x + 20) + "," + (y + 20) + ")'/>";
+}
+
+function station(x, y, sta) {
+    return "<circle cx='"+x+"' cy='"+y+"' r='13' /><text x="+(x+50)+" y="+y+">"+sta+"</text>";
+}
+
+function train_up(x, y, type) {
+    var icons = ['no_train', 'train'];
+    x += 15;
+    y -= 20;
+    return "<image xlink:href='images/" + icons[type] + ".svg' x='" + x + "' y='" + y + "' width='40px'/>";
+}
+
+function train_down(x, y, type) {
+    var icons = ['no_train', 'train'];
+    x += 45;
+    y -= 20;
+    return "<image xlink:href='images/" + icons[type] + ".svg' x='" + x + "' y='" + y + "' width='40px' transform='rotate(180," + (x + 20) + "," + (y + 20) + ")'/>";
 }
 
 
