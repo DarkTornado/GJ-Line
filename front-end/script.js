@@ -122,6 +122,7 @@ function applyData(data) {
         src += station(400, 2200, seoul[1].station) + train_up(335, 2200, seoul[1].up) + train_down(365, 2200, seoul[1].down);
         src += '</svg>';
         src += '<hr width=98%><p>© 2022-2023 Dark Tornado, All rights reserved.</p>';
+        src += '<p>이 사이트는 네이버에서 제공하는 나눔글꼴을 사용해요.</p>';
         document.getElementById("map_mobile").innerHTML = src;
     }
     console.log('updated');
