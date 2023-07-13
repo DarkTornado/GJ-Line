@@ -3,182 +3,196 @@
 © 2022-2023 Dark Tornado, All rights reserved.
 -->
 <html>
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="user-scalable=no width=device-width" />
-<meta name="description" content="Subway Map" />
-<title>
-Subway Map
-</title>
-<link rel=stylesheet href='./style.css' />
+    <meta charset="utf-8">
+    <meta name="viewport" content="user-scalable=no width=device-width" />
+    <meta name="description" content="Subway Map" />
+    <title>
+        Subway Map
+    </title>
+    <link rel=stylesheet href='./style.css' />
 </head>
+
 <body>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square.css" rel="stylesheet">
 
-<div class=title>
-&nbsp;경의·중앙선 실시간 운행정보
-</div><br>
+    <div class=title>
+        &nbsp;경의·중앙선 실시간 운행정보
+    </div><br>
 
-<div id=map_area>
-<div class=map_pc>
+    <div id=map_area>
+        <div class=map_pc>
+
+
+<!--
+수도권 전철 경의·중앙선 노선도 벡터 이미지 시작
+© 2022-2023 Dark Tornado, All rights reserved.
+-->
 
 <svg id="map" width=100% viewBox="0 0 3000 1700">
-<!--svg id="map" width="3000" height="2000" viewBox="0 0 3000 1700"-->
+    <!--svg id="map" width="3000" height="2000" viewBox="0 0 3000 1700"-->
 
-<!-- 문산 ~ 가좌 ~ 용산 ~ 덕소 -->
-<polyline points="
+    <!-- 문산 ~ 가좌 ~ 용산 ~ 덕소 -->
+    <polyline points="
     200,200 2600,200 2800,400 2600,600 400,600
-	200,800 400,1000 2600,1000 2800,1200 2600,1400 200,1400
-	" fill="none" stroke="#77C4A3" />
-<!-- 가좌 ~ 서울역 -->
-<polyline points="
+    200,800 400,1000 2600,1000 2800,1200 2600,1400 200,1400
+    " fill="none" stroke="#77C4A3" />
+    <!-- 가좌 ~ 서울역 -->
+    <polyline points="
     1600,600 1400,800 1200,800
-	" fill="none" stroke="#77C4A3" />
+    " fill="none" stroke="#77C4A3" />
 
-<!-- 가좌 ~ 서울역 제외 -->
-<circle cx="200" cy="200" r="15" onClick="onIconClicked('문산');" />
-<text x=200 y=270 onClick="onTextClicked(this);">문산</text>
-<circle cx="400" cy="200" r="15" onClick="onIconClicked('파주');" />
-<text x=400 y=270 onClick="onTextClicked(this);">파주</text>
-<circle cx="600" cy="200" r="15" onClick="onIconClicked('월롱');" />
-<text x=600 y=270 onClick="onTextClicked(this);">월롱</text>
-<circle cx="800" cy="200" r="15" onClick="onIconClicked('금촌');" />
-<text x=800 y=270 onClick="onTextClicked(this);">금촌</text>
-<circle cx="1000" cy="200" r="15" onClick="onIconClicked('금릉');" />
-<text x=1000 y=270 onClick="onTextClicked(this);">금릉</text>
-<circle cx="1200" cy="200" r="15" onClick="onIconClicked('운정');" />
-<text x=1200 y=270 onClick="onTextClicked(this);">운정</text>
-<circle cx="1400" cy="200" r="15" onClick="onIconClicked('야당');" />
-<text x=1400 y=270 onClick="onTextClicked(this);">야당</text>
-<circle cx="1600" cy="200" r="15" onClick="onIconClicked('탄현');" />
-<text x=1600 y=270 onClick="onTextClicked(this);">탄현</text>
-<circle cx="1800" cy="200" r="15" onClick="onIconClicked('일산');" />
-<text x=1800 y=270 onClick="onTextClicked(this);">일산</text>
-<circle cx="2000" cy="200" r="15" onClick="onIconClicked('풍산');" />
-<text x=2000 y=270 onClick="onTextClicked(this);">풍산</text>
-<circle cx="2200" cy="200" r="15" onClick="onIconClicked('백마');" />
-<text x=2200 y=270 onClick="onTextClicked(this);">백마</text>
-<circle cx="2400" cy="200" r="15" onClick="onIconClicked('곡산');" />
-<text x=2400 y=270 onClick="onTextClicked(this);">곡산</text>
-<circle cx="2600" cy="200" r="15" onClick="onIconClicked('대곡');" />
-<text x=2600 y=270 onClick="onTextClicked(this);">대곡</text>
+    <!-- 가좌 ~ 서울역 제외 -->
+    <circle cx="200" cy="200" r="15" onClick="onIconClicked('문산');" />
+    <text x=200 y=270 onClick="onTextClicked(this);">문산</text>
+    <circle cx="400" cy="200" r="15" onClick="onIconClicked('파주');" />
+    <text x=400 y=270 onClick="onTextClicked(this);">파주</text>
+    <circle cx="600" cy="200" r="15" onClick="onIconClicked('월롱');" />
+    <text x=600 y=270 onClick="onTextClicked(this);">월롱</text>
+    <circle cx="800" cy="200" r="15" onClick="onIconClicked('금촌');" />
+    <text x=800 y=270 onClick="onTextClicked(this);">금촌</text>
+    <circle cx="1000" cy="200" r="15" onClick="onIconClicked('금릉');" />
+    <text x=1000 y=270 onClick="onTextClicked(this);">금릉</text>
+    <circle cx="1200" cy="200" r="15" onClick="onIconClicked('운정');" />
+    <text x=1200 y=270 onClick="onTextClicked(this);">운정</text>
+    <circle cx="1400" cy="200" r="15" onClick="onIconClicked('야당');" />
+    <text x=1400 y=270 onClick="onTextClicked(this);">야당</text>
+    <circle cx="1600" cy="200" r="15" onClick="onIconClicked('탄현');" />
+    <text x=1600 y=270 onClick="onTextClicked(this);">탄현</text>
+    <circle cx="1800" cy="200" r="15" onClick="onIconClicked('일산');" />
+    <text x=1800 y=270 onClick="onTextClicked(this);">일산</text>
+    <circle cx="2000" cy="200" r="15" onClick="onIconClicked('풍산');" />
+    <text x=2000 y=270 onClick="onTextClicked(this);">풍산</text>
+    <circle cx="2200" cy="200" r="15" onClick="onIconClicked('백마');" />
+    <text x=2200 y=270 onClick="onTextClicked(this);">백마</text>
+    <circle cx="2400" cy="200" r="15" onClick="onIconClicked('곡산');" />
+    <text x=2400 y=270 onClick="onTextClicked(this);">곡산</text>
+    <circle cx="2600" cy="200" r="15" onClick="onIconClicked('대곡');" />
+    <text x=2600 y=270 onClick="onTextClicked(this);">대곡</text>
 
-<circle cx="2800" cy="400" r="15" onClick="onIconClicked('능곡');" />
-<text x=2730 y=400 onClick="onTextClicked(this);" class=right>능곡</text>
+    <circle cx="2800" cy="400" r="15" onClick="onIconClicked('능곡');" />
+    <text x=2730 y=400 onClick="onTextClicked(this);" class=right>능곡</text>
 
-<circle cx="2600" cy="600" r="15" onClick="onIconClicked('행신');" />
-<text x=2600 y=670 onClick="onTextClicked(this);">행신</text>
-<circle cx="2400" cy="600" r="15" onClick="onIconClicked('강매');" />
-<text x=2400 y=670 onClick="onTextClicked(this);">강매</text>
-<circle cx="2200" cy="600" r="15" onClick="onIconClicked('화전');" />
-<text x=2200 y=670 onClick="onTextClicked(this);">화전</text>
-<circle cx="2000" cy="600" r="15" onClick="onIconClicked('수색');" />
-<text x=2000 y=670 onClick="onTextClicked(this);">수색</text>
-<circle cx="1800" cy="600" r="15" onClick="onIconClicked('디지털미디어시티');" />
-<text x=1800 y=670 onClick="onTextClicked(this);">디지털미디어시티</text>
-<circle cx="1600" cy="600" r="15" onClick="onIconClicked('가좌');" />
-<text x=1600 y=670 onClick="onTextClicked(this);">가좌</text>
-<circle cx="1400" cy="600" r="15" onClick="onIconClicked('홍대입구');" />
-<text x=1400 y=670 onClick="onTextClicked(this);">홍대입구</text>
-<circle cx="1200" cy="600" r="15" onClick="onIconClicked('서강대');" />
-<text x=1200 y=670 onClick="onTextClicked(this);">서강대</text>
-<circle cx="1000" cy="600" r="15" onClick="onIconClicked('공덕');" />
-<text x=1000 y=670 onClick="onTextClicked(this);">공덕</text>
-<circle cx="800" cy="600" r="15" onClick="onIconClicked('효창공원앞');" />
-<text x=800 y=670 onClick="onTextClicked(this);">효창공원앞</text>
-<circle cx="600" cy="600" r="15" onClick="onIconClicked('용산');" />
-<text x=600 y=670 onClick="onTextClicked(this);">용산</text>
-<circle cx="400" cy="600" r="15" onClick="onIconClicked('이촌');" />
-<text x=400 y=670 onClick="onTextClicked(this);">이촌</text>
+    <circle cx="2600" cy="600" r="15" onClick="onIconClicked('행신');" />
+    <text x=2600 y=670 onClick="onTextClicked(this);">행신</text>
+    <circle cx="2400" cy="600" r="15" onClick="onIconClicked('강매');" />
+    <text x=2400 y=670 onClick="onTextClicked(this);">강매</text>
+    <circle cx="2200" cy="600" r="15" onClick="onIconClicked('화전');" />
+    <text x=2200 y=670 onClick="onTextClicked(this);">화전</text>
+    <circle cx="2000" cy="600" r="15" onClick="onIconClicked('수색');" />
+    <text x=2000 y=670 onClick="onTextClicked(this);">수색</text>
+    <circle cx="1800" cy="600" r="15" onClick="onIconClicked('디지털미디어시티');" />
+    <text x=1800 y=670 onClick="onTextClicked(this);">디지털미디어시티</text>
+    <circle cx="1600" cy="600" r="15" onClick="onIconClicked('가좌');" />
+    <text x=1600 y=670 onClick="onTextClicked(this);">가좌</text>
+    <circle cx="1400" cy="600" r="15" onClick="onIconClicked('홍대입구');" />
+    <text x=1400 y=670 onClick="onTextClicked(this);">홍대입구</text>
+    <circle cx="1200" cy="600" r="15" onClick="onIconClicked('서강대');" />
+    <text x=1200 y=670 onClick="onTextClicked(this);">서강대</text>
+    <circle cx="1000" cy="600" r="15" onClick="onIconClicked('공덕');" />
+    <text x=1000 y=670 onClick="onTextClicked(this);">공덕</text>
+    <circle cx="800" cy="600" r="15" onClick="onIconClicked('효창공원앞');" />
+    <text x=800 y=670 onClick="onTextClicked(this);">효창공원앞</text>
+    <circle cx="600" cy="600" r="15" onClick="onIconClicked('용산');" />
+    <text x=600 y=670 onClick="onTextClicked(this);">용산</text>
+    <circle cx="400" cy="600" r="15" onClick="onIconClicked('이촌');" />
+    <text x=400 y=670 onClick="onTextClicked(this);">이촌</text>
 
-<circle cx="200" cy="800" r="15" onClick="onIconClicked('서빙고');" />
-<text x=270 y=800 onClick="onTextClicked(this);" class=left>서빙고</text>
+    <circle cx="200" cy="800" r="15" onClick="onIconClicked('서빙고');" />
+    <text x=270 y=800 onClick="onTextClicked(this);" class=left>서빙고</text>
 
-<circle cx="400" cy="1000" r="15" onClick="onIconClicked('한남');" />
-<text x=400 y=1070 onClick="onTextClicked(this);">한남</text>
-<circle cx="600" cy="1000" r="15" onClick="onIconClicked('옥수');" />
-<text x=600 y=1070 onClick="onTextClicked(this);">옥수</text>
-<circle cx="800" cy="1000" r="15" onClick="onIconClicked('응봉');" />
-<text x=800 y=1070 onClick="onTextClicked(this);">응봉</text>
-<circle cx="1000" cy="1000" r="15" onClick="onIconClicked('왕십리');" />
-<text x=1000 y=1070 onClick="onTextClicked(this);">왕십리</text>
-<circle cx="1200" cy="1000" r="15" onClick="onIconClicked('청량리');" />
-<text x=1200 y=1070 onClick="onTextClicked(this);">청량리</text>
-<circle cx="1400" cy="1000" r="15" onClick="onIconClicked('회기');" />
-<text x=1400 y=1070 onClick="onTextClicked(this);">회기</text>
-<circle cx="1600" cy="1000" r="15" onClick="onIconClicked('중랑');" />
-<text x=1600 y=1070 onClick="onTextClicked(this);">중랑</text>
-<circle cx="1800" cy="1000" r="15" onClick="onIconClicked('상봉');" />
-<text x=1800 y=1070 onClick="onTextClicked(this);">상봉</text>
-<circle cx="2000" cy="1000" r="15" onClick="onIconClicked('망우');" />
-<text x=2000 y=1070 onClick="onTextClicked(this);">망우</text>
-<circle cx="2200" cy="1000" r="15" onClick="onIconClicked('양원');" />
-<text x=2200 y=1070 onClick="onTextClicked(this);">양원</text>
-<circle cx="2400" cy="1000" r="15" onClick="onIconClicked('구리');" />
-<text x=2400 y=1070 onClick="onTextClicked(this);">구리</text>
-<circle cx="2600" cy="1000" r="15" onClick="onIconClicked('도농');" />
-<text x=2600 y=1070 onClick="onTextClicked(this);">도농</text>
+    <circle cx="400" cy="1000" r="15" onClick="onIconClicked('한남');" />
+    <text x=400 y=1070 onClick="onTextClicked(this);">한남</text>
+    <circle cx="600" cy="1000" r="15" onClick="onIconClicked('옥수');" />
+    <text x=600 y=1070 onClick="onTextClicked(this);">옥수</text>
+    <circle cx="800" cy="1000" r="15" onClick="onIconClicked('응봉');" />
+    <text x=800 y=1070 onClick="onTextClicked(this);">응봉</text>
+    <circle cx="1000" cy="1000" r="15" onClick="onIconClicked('왕십리');" />
+    <text x=1000 y=1070 onClick="onTextClicked(this);">왕십리</text>
+    <circle cx="1200" cy="1000" r="15" onClick="onIconClicked('청량리');" />
+    <text x=1200 y=1070 onClick="onTextClicked(this);">청량리</text>
+    <circle cx="1400" cy="1000" r="15" onClick="onIconClicked('회기');" />
+    <text x=1400 y=1070 onClick="onTextClicked(this);">회기</text>
+    <circle cx="1600" cy="1000" r="15" onClick="onIconClicked('중랑');" />
+    <text x=1600 y=1070 onClick="onTextClicked(this);">중랑</text>
+    <circle cx="1800" cy="1000" r="15" onClick="onIconClicked('상봉');" />
+    <text x=1800 y=1070 onClick="onTextClicked(this);">상봉</text>
+    <circle cx="2000" cy="1000" r="15" onClick="onIconClicked('망우');" />
+    <text x=2000 y=1070 onClick="onTextClicked(this);">망우</text>
+    <circle cx="2200" cy="1000" r="15" onClick="onIconClicked('양원');" />
+    <text x=2200 y=1070 onClick="onTextClicked(this);">양원</text>
+    <circle cx="2400" cy="1000" r="15" onClick="onIconClicked('구리');" />
+    <text x=2400 y=1070 onClick="onTextClicked(this);">구리</text>
+    <circle cx="2600" cy="1000" r="15" onClick="onIconClicked('도농');" />
+    <text x=2600 y=1070 onClick="onTextClicked(this);">도농</text>
 
-<circle cx="2800" cy="1200" r="15" onClick="onIconClicked('양정');" />
-<text x=2730 y=1200 onClick="onTextClicked(this);" class=right>양정</text>
+    <circle cx="2800" cy="1200" r="15" onClick="onIconClicked('양정');" />
+    <text x=2730 y=1200 onClick="onTextClicked(this);" class=right>양정</text>
 
-<circle cx="2600" cy="1400" r="15" onClick="onIconClicked('덕소');" />
-<text x=2600 y=1470 onClick="onTextClicked(this);">덕소</text>
-<circle cx="2400" cy="1400" r="15" onClick="onIconClicked('도심');" />
-<text x=2400 y=1470 onClick="onTextClicked(this);">도심</text>
-<circle cx="2200" cy="1400" r="15" onClick="onIconClicked('팔당');" />
-<text x=2200 y=1470 onClick="onTextClicked(this);">팔당</text>
-<circle cx="2000" cy="1400" r="15" onClick="onIconClicked('운길산');" />
-<text x=2000 y=1470 onClick="onTextClicked(this);">운길산</text>
-<circle cx="1800" cy="1400" r="15" onClick="onIconClicked('양수');" />
-<text x=1800 y=1470 onClick="onTextClicked(this);">양수</text>
-<circle cx="1600" cy="1400" r="15" onClick="onIconClicked('신원');" />
-<text x=1600 y=1470 onClick="onTextClicked(this);">신원</text>
-<circle cx="1400" cy="1400" r="15" onClick="onIconClicked('국수');" />
-<text x=1400 y=1470 onClick="onTextClicked(this);">국수</text>
-<circle cx="1200" cy="1400" r="15" onClick="onIconClicked('아신');" />
-<text x=1200 y=1470 onClick="onTextClicked(this);">아신</text>
-<circle cx="1000" cy="1400" r="15" onClick="onIconClicked('오빈');" />
-<text x=1000 y=1470 onClick="onTextClicked(this);">오빈</text>
-<circle cx="800" cy="1400" r="15" onClick="onIconClicked('양평');" />
-<text x=800 y=1470 onClick="onTextClicked(this);">양평</text>
-<circle cx="600" cy="1400" r="15" onClick="onIconClicked('원덕');" />
-<text x=600 y=1470 onClick="onTextClicked(this);">원덕</text>
-<circle cx="400" cy="1400" r="15" onClick="onIconClicked('용문');" />
-<text x=400 y=1470 onClick="onTextClicked(this);">용문</text>
-<circle cx="200" cy="1400" r="15" onClick="onIconClicked('지평');" />
-<text x=200 y=1470 onClick="onTextClicked(this);">지평</text>
+    <circle cx="2600" cy="1400" r="15" onClick="onIconClicked('덕소');" />
+    <text x=2600 y=1470 onClick="onTextClicked(this);">덕소</text>
+    <circle cx="2400" cy="1400" r="15" onClick="onIconClicked('도심');" />
+    <text x=2400 y=1470 onClick="onTextClicked(this);">도심</text>
+    <circle cx="2200" cy="1400" r="15" onClick="onIconClicked('팔당');" />
+    <text x=2200 y=1470 onClick="onTextClicked(this);">팔당</text>
+    <circle cx="2000" cy="1400" r="15" onClick="onIconClicked('운길산');" />
+    <text x=2000 y=1470 onClick="onTextClicked(this);">운길산</text>
+    <circle cx="1800" cy="1400" r="15" onClick="onIconClicked('양수');" />
+    <text x=1800 y=1470 onClick="onTextClicked(this);">양수</text>
+    <circle cx="1600" cy="1400" r="15" onClick="onIconClicked('신원');" />
+    <text x=1600 y=1470 onClick="onTextClicked(this);">신원</text>
+    <circle cx="1400" cy="1400" r="15" onClick="onIconClicked('국수');" />
+    <text x=1400 y=1470 onClick="onTextClicked(this);">국수</text>
+    <circle cx="1200" cy="1400" r="15" onClick="onIconClicked('아신');" />
+    <text x=1200 y=1470 onClick="onTextClicked(this);">아신</text>
+    <circle cx="1000" cy="1400" r="15" onClick="onIconClicked('오빈');" />
+    <text x=1000 y=1470 onClick="onTextClicked(this);">오빈</text>
+    <circle cx="800" cy="1400" r="15" onClick="onIconClicked('양평');" />
+    <text x=800 y=1470 onClick="onTextClicked(this);">양평</text>
+    <circle cx="600" cy="1400" r="15" onClick="onIconClicked('원덕');" />
+    <text x=600 y=1470 onClick="onTextClicked(this);">원덕</text>
+    <circle cx="400" cy="1400" r="15" onClick="onIconClicked('용문');" />
+    <text x=400 y=1470 onClick="onTextClicked(this);">용문</text>
+    <circle cx="200" cy="1400" r="15" onClick="onIconClicked('지평');" />
+    <text x=200 y=1470 onClick="onTextClicked(this);">지평</text>
 
-<!-- 가좌 ~ 서울역 -->
-<circle cx="1400" cy="800" r="15" onClick="onIconClicked('신촌');" />
-<text x=1400 y=870 onClick="onTextClicked(this);">신촌</text>
-<circle cx="1200" cy="800" r="15" onClick="onIconClicked('서울역');" />
-<text x=1200 y=870 onClick="onTextClicked(this);">서울역</text>
+    <!-- 가좌 ~ 서울역 -->
+    <circle cx="1400" cy="800" r="15" onClick="onIconClicked('신촌');" />
+    <text x=1400 y=870 onClick="onTextClicked(this);">신촌</text>
+    <circle cx="1200" cy="800" r="15" onClick="onIconClicked('서울역');" />
+    <text x=1200 y=870 onClick="onTextClicked(this);">서울역</text>
 
 
-<!-- 저작권 표시 -->
-<text x=20 y=1680 class='left info'>이 벡터 이미지에는 네이버에서 제공한 나눔글꼴이 적용되어 있습니다.</text>
-<text x=2980 y=1680 class='right bold info'>© 2022-2023 Dark Tornado, All rights reserved.</text>
+    <!-- 저작권 표시 -->
+    <text x=20 y=1680 class='left info'>이 벡터 이미지에는 네이버에서 제공한 나눔글꼴이 적용되어 있습니다.</text>
+    <text x=2980 y=1680 class='right bold info'>© 2022-2023 Dark Tornado, All rights reserved.</text>
 
 </svg>
 
-</div>
-<div class=map_mobile id=map_mobile>
-</div>
-</div>
-<div class=alert_area>
-<div id=alert_area>
-<table>
-<tr>
-<th>일시 정지됨</th>
-</tr>
-<tr>
-<td>일정 시간동안 입력이 없어서, 작동이 일시 정지되었어요. 아무 곳이나 누르면 다시 작동할거에요</td>
-</tr>
-</table>
-</div>
-</div>
-<script src='./script.js'></script>
+<!--
+수도권 전철 경의·중앙선 노선도 벡터 이미지 끝
+-->
+
+
+        </div>
+        <div class=map_mobile id=map_mobile>
+        </div>
+    </div>
+    <div class=alert_area>
+        <div id=alert_area>
+            <table>
+                <tr>
+                    <th>일시 정지됨</th>
+                </tr>
+                <tr>
+                    <td>일정 시간동안 입력이 없어서, 작동이 일시 정지되었어요. 아무 곳이나 누르면 다시 작동할거에요</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <script src='./script.js'></script>
 </body>
+
 </html>
