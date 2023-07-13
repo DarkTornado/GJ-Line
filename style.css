@@ -1,113 +1,108 @@
 /* 웹 */
 body {
-  background-color: #FFFFFF;
+    background-color: #FFFFFF;
 }
-
 div.title {
-  background: #00BFA5;
-  padding: 13px;
-  box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.3);
-  width: 100%;
-  position: fixed;
-  color: #FFFFFF;
-  font-size: 20px;
+    background: #00BFA5;
+    padding: 13px;
+    box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    position: fixed;
+    color: #FFFFFF;
+    font-size: 20px;
+}
+span.right {
+    float: right;
 }
 
-span.right {
-  float: right;
-}
 
 /* 노선도 */
 .bold {
-  font-family: NanumSquareBold;
+    font-family: NanumSquareBold;
 }
-
 .left {
-  text-anchor: start;
+    text-anchor: start;
 }
-
 .right {
-  text-anchor: end;
+    text-anchor: end;
 }
-
 body {
-  font-family: NanumSquare;
-  margin: 0px;
-  font-size: 40px;
-  text-anchor: middle;
-  dominant-baseline: middle;
+    font-family: NanumSquare;
+    margin: 0px;
+    font-size: 40px;
+    text-anchor: middle;
+    dominant-baseline: middle;
 }
-
 polyline, line {
-  stroke-width: 15;
-  stroke-linejoin: round;
-  stroke-linecap: round;
+    stroke-width: 15;
+    stroke-linejoin: round;
+    stroke-linecap: round;
 }
-
 circle {
-  fill: #FFFFFF;
-  stroke: #000000;
-  stroke-width: 3;
+    fill: #FFFFFF;
+    stroke: #000000;
+    stroke-width: 3;
 }
-
 text {
-  font-size: 40px;
+    font-size: 40px;
+}
+text.info {
+    font-size: 30px;
 }
 
-text.info {
-  font-size: 30px;
-}
 
 /* 반응형 처리 */
-
-div.map_mobile{
-  display: none;
-}
-
-@media screen and (max-width: 768px) {
-  div.map_mobile{
-    display: block;
-  }
-  div.map_pc {
+div.map_mobile {
     display: none;
-  }
-  text {
-    text-anchor: start;
-    font-size: 30px;
-  }
 }
+@media screen and (max-width: 768px) {
+    div.map_mobile {
+        display: block;
+    }
+    div.map_pc {
+        display: none;
+    }
+    text {
+        text-anchor: start;
+        font-size: 30px;
+    }
+    p {
+        font-size: 13px;
+        text-align: center;
+    }
+}
+
 
 /* 새로고침 일시 정지 */
 div#map_area {
-  display: block;
+    display: block;
 }
 div#alert_area {
-  display: none;
-  margin: 20px;
-  max-width: 540px;
+    display: none;
+    margin: 20px;
+    max-width: 540px;
 }
 div.alert_area {
-  text-align: center;
+    text-align: center;
 }
 table {
-  width: 100%;
-  color: #000000;
-  border-collapse: collapse;
-  font-size: 15px;
-  border-top: 1px solid #000000;
-  border-bottom: 1px solid #000000;
-  border: 0px;
+    width: 100%;
+    color: #000000;
+    border-collapse: collapse;
+    font-size: 15px;
+    border-top: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+    border: 0px;
 }
 th, td {
-  border-top: 1px solid #000000;
-  border-bottom: 1px solid #000000;
-  padding: 10px;
+    border-top: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+    padding: 10px;
 }
 th {
-  font-size: 20px;
-  background-color: #D2EBE7;
+    font-size: 20px;
+    background-color: #D2EBE7;
 }
 td {
-  font-size: 17px;
+    font-size: 17px;
 }
-
