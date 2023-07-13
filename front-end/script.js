@@ -57,7 +57,21 @@ var pos = [
 ];
 
 
+var tick = 0, touch = 120;
+function secondTick() {
+	if (tick > 0) {
+		tick--;
+	}
+	if (tick == 0) {
+		if (touch > 0) update();
+		else changeUI('none', 'inline-block');
+	}
+	if (touch > 0) {
+		touch--;
+	}
+}
 function update() {
+	tick = 20;
     fetch('back-end url')
         .then((response) => response.text())
         .then((data) => {
@@ -65,7 +79,20 @@ function update() {
         });
 }
 update();
-//setInterval(update, 10 * 1000);
+setInterval(secondTick, 1000);
+document.body.addEventListener('click', (e) => {
+	if (touch == 0) changeUI('block', 'none');
+    touch = 120;
+});
+document.body.addEventListener('touchstart', (e) => {
+	if (touch == 0) changeUI('block', 'none');
+    touch = 120;
+});
+
+function changeUI(map, alert) {
+	document.querySelector('div#map_area').style['display'] = map;
+	document.querySelector('div#alert_area').style['display'] = alert;
+}
 
 var map = null;
 function applyData(data) {
@@ -137,3 +164,4 @@ function onIconClicked(station) {
 function onTextClicked(element) {
     alert('글자: ' + element.innerHTML.replace(/(<([^>]+)>)/g, ''));
 }
+

@@ -76,3 +76,38 @@ div.map_mobile{
     font-size: 30px;
   }
 }
+
+/* 새로고침 일시 정지 */
+div#map_area {
+  display: block;
+}
+div#alert_area {
+  display: none;
+  margin: 20px;
+  max-width: 540px;
+}
+div.alert_area {
+  text-align: center;
+}
+table {
+  width: 100%;
+  color: #000000;
+  border-collapse: collapse;
+  font-size: 15px;
+  border-top: 1px solid #000000;
+  border-bottom: 1px solid #000000;
+  border: 0px;
+}
+th, td {
+  border-top: 1px solid #000000;
+  border-bottom: 1px solid #000000;
+  padding: 10px;
+}
+th {
+  font-size: 20px;
+  background-color: #D2EBE7;
+}
+td {
+  font-size: 17px;
+}
+
