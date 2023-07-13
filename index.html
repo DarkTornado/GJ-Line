@@ -13,13 +13,15 @@ Subway Map
 <link rel=stylesheet href='./style.css' />
 </head>
 <body>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square.css" rel="stylesheet">
 
 <div class=title>
 &nbsp;경의·중앙선 실시간 운행정보
 </div><br>
 
-<div>
+<div id=map_area>
+<div class=map_pc>
 
 <svg id="map" width=100% viewBox="0 0 3000 1700">
 <!--svg id="map" width="3000" height="2000" viewBox="0 0 3000 1700"-->
@@ -161,6 +163,21 @@ Subway Map
 
 </svg>
 
+</div>
+<div class=map_mobile id=map_mobile>
+</div>
+</div>
+<div class=alert_area>
+<div id=alert_area>
+<table>
+<tr>
+<th>일시 정지됨</th>
+</tr>
+<tr>
+<td>일정 시간동안 입력이 없어서, 작동이 일시 정지되었어요. 아무 곳이나 누르면 다시 작동할거에요</td>
+</tr>
+</table>
+</div>
 </div>
 <script src='./script.js'></script>
 </body>
