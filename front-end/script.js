@@ -59,19 +59,19 @@ var pos = [
 
 var tick = 0, touch = 120;
 function secondTick() {
-	if (tick > 0) {
-		tick--;
-	}
-	if (tick == 0) {
-		if (touch > 0) update();
-		else changeUI('none', 'inline-block');
-	}
-	if (touch > 0) {
-		touch--;
-	}
+    if (tick > 0) {
+        tick--;
+    }
+    if (tick == 0) {
+        if (touch > 0) update();
+        else changeUI('none', 'inline-block');
+    }
+    if (touch > 0) {
+        touch--;
+    }
 }
 function update() {
-	tick = 20;
+    tick = 20;
     fetch('back-end url')
         .then((response) => response.text())
         .then((data) => {
@@ -81,17 +81,17 @@ function update() {
 update();
 setInterval(secondTick, 1000);
 document.body.addEventListener('click', (e) => {
-	if (touch == 0) changeUI('block', 'none');
+    if (touch == 0) changeUI('block', 'none');
     touch = 120;
 });
 document.body.addEventListener('touchstart', (e) => {
-	if (touch == 0) changeUI('block', 'none');
+    if (touch == 0) changeUI('block', 'none');
     touch = 120;
 });
 
 function changeUI(map, alert) {
-	document.querySelector('div#map_area').style['display'] = map;
-	document.querySelector('div#alert_area').style['display'] = alert;
+    document.querySelector('div#map_area').style['display'] = map;
+    document.querySelector('div#alert_area').style['display'] = alert;
 }
 
 var map = null;
@@ -107,7 +107,7 @@ function applyData(data) {
         });
         document.getElementById("map").innerHTML = map + src;
     } else {
-        var src = '<svg id="map_mobile" width=100% viewBox="0 0 600 5400">';
+        var src = '<svg id="map_mobile" width=100% viewBox="0 0 600 5350">';
         src += '<polyline points="100,100 100,5300" fill="none" stroke="#77C4A3" />';
         src += '<polyline points="100,2000 150,2050 350,2050 400,2100 400,2200" fill="none" stroke="#77C4A3" />';
         var seoul = [data.pop()];
@@ -121,6 +121,7 @@ function applyData(data) {
         src += station(400, 2100, seoul[0].station) + train_up(335, 2100, seoul[0].up) + train_down(365, 2100, seoul[0].down);
         src += station(400, 2200, seoul[1].station) + train_up(335, 2200, seoul[1].up) + train_down(365, 2200, seoul[1].down);
         src += '</svg>';
+        src += '<hr width=98%><p>© 2022-2023 Dark Tornado, All rights reserved.</p>';
         document.getElementById("map_mobile").innerHTML = src;
     }
     console.log('updated');

@@ -75,6 +75,10 @@ div.map_mobile{
     text-anchor: start;
     font-size: 30px;
   }
+  p {
+    text-align: center;
+    font-size: 13px;
+  }
 }
 
 /* 새로고침 일시 정지 */
