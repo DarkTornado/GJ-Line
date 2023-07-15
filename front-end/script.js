@@ -106,13 +106,13 @@ function applyData(data) {
             src += train(pos[i].x, pos[i].y, pos[i].dir, e.down, false);
         });
         document.getElementById("map").innerHTML = map + src;
-    } else {
+    } else {  //모바일에서 접속한 경우
         var src = '<svg id="map_mobile" width=100% viewBox="0 0 600 5350">';
         src += '<polyline points="100,100 100,5300" fill="none" stroke="#77C4A3" />';
         src += '<polyline points="100,2000 150,2050 350,2050 400,2100 400,2200" fill="none" stroke="#77C4A3" />';
         var seoul = [data.pop()];
         seoul.unshift(data.pop());
-        data.forEach((e, i) => {  //모바일에서 접속한 경우
+        data.forEach((e, i) => {
             var y = (i + 1) * 100;
             src += station(100, y, e.station);
             src += train_up(35, y, e.up);
