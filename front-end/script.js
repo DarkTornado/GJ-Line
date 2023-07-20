@@ -93,39 +93,43 @@ function changeUI(map, alert) {
     document.querySelector('div#map_area').style['display'] = map;
     document.querySelector('div#alert_area').style['display'] = alert;
 }
-
-var map = null;
 function applyData(data) {
     data = JSON.parse(data);
-
-    if (window.innerWidth >= 768) {  //PC에서 접속한 경우
-        var src = '';
-        if (map == null) map = document.getElementById("map").innerHTML;
-        data.forEach((e, i) => {
-            src += train(pos[i].x, pos[i].y, pos[i].dir, e.up, true);
-            src += train(pos[i].x, pos[i].y, pos[i].dir, e.down, false);
-        });
-        document.getElementById("map").innerHTML = map + src;
-    } else {  //모바일에서 접속한 경우
-        var src = '<svg id="map_mobile" width=100% viewBox="0 0 600 5350">';
-        src += '<polyline points="100,100 100,5300" fill="none" stroke="#77C4A3" />';
-        src += '<polyline points="100,2000 150,2050 350,2050 400,2100 400,2200" fill="none" stroke="#77C4A3" />';
-        var seoul = [data.pop()];
-        seoul.unshift(data.pop());
-        data.forEach((e, i) => {
-            var y = (i + 1) * 100;
-            src += station(100, y, e.station);
-            src += train_up(35, y, e.up);
-            src += train_down(65, y, e.down);
-        });
-        src += station(400, 2100, seoul[0].station) + train_up(335, 2100, seoul[0].up) + train_down(365, 2100, seoul[0].down);
-        src += station(400, 2200, seoul[1].station) + train_up(335, 2200, seoul[1].up) + train_down(365, 2200, seoul[1].down);
-        src += '</svg>';
-        src += '<hr width=98%><p>© 2022-2023 Dark Tornado, All rights reserved.</p>';
-        src += '<p>이 사이트는 네이버에서 제공하는 나눔글꼴을 사용해요.</p>';
-        document.getElementById("map_mobile").innerHTML = src;
-    }
+    updatePC(data);
+    updateMobile(data);
     console.log('updated');
+}
+
+var map = null;
+
+function updatePC(data) {
+    var src = '';
+    if (map == null) map = document.getElementById("map").innerHTML;
+    data.forEach((e, i) => {
+        src += train(pos[i].x, pos[i].y, pos[i].dir, e.up, true);
+        src += train(pos[i].x, pos[i].y, pos[i].dir, e.down, false);
+    });
+    document.getElementById("map").innerHTML = map + src;
+}
+
+function updateMobile(data) {
+    var src = '<svg id="map_mobile" width=100% viewBox="0 0 600 5350">';
+    src += '<polyline points="100,100 100,5300" fill="none" stroke="#77C4A3" />';
+    src += '<polyline points="100,2000 150,2050 350,2050 400,2100 400,2200" fill="none" stroke="#77C4A3" />';
+    var seoul = [data.pop()];
+    seoul.unshift(data.pop());
+    data.forEach((e, i) => {
+        var y = (i + 1) * 100;
+        src += station(100, y, e.station);
+        src += train_up(35, y, e.up);
+        src += train_down(65, y, e.down);
+    });
+    src += station(400, 2100, seoul[0].station) + train_up(335, 2100, seoul[0].up) + train_down(365, 2100, seoul[0].down);
+    src += station(400, 2200, seoul[1].station) + train_up(335, 2200, seoul[1].up) + train_down(365, 2200, seoul[1].down);
+    src += '</svg>';
+    src += '<hr width=98%><p>© 2022-2023 Dark Tornado, All rights reserved.</p>';
+    src += '<p>이 사이트는 네이버에서 제공하는 나눔글꼴을 사용해요.</p>';
+    document.getElementById("map_mobile").innerHTML = src;
 }
 
 function train(x, y, dir, type, isUp) {
