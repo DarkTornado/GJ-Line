@@ -52,11 +52,11 @@ text.info {
 
 
 /* 반응형 처리 */
-div.map_mobile {
+div.body_mobile {
     display: none;
 }
 @media screen and (max-width: 768px) {
-    div.map_mobile {
+    div.body_mobile {
         display: block;
     }
     div.map_pc {

@@ -113,7 +113,7 @@ function updatePC(data) {
 }
 
 function updateMobile(data) {
-    var src = '<svg id="map_mobile" width=100% viewBox="0 0 600 5350">';
+    var src = '<svg width=100% viewBox="0 0 600 5350">';
     src += '<polyline points="100,100 100,5300" fill="none" stroke="#77C4A3" />';
     src += '<polyline points="100,2000 150,2050 350,2050 400,2100 400,2200" fill="none" stroke="#77C4A3" />';
     var seoul = [data.pop()];
@@ -127,8 +127,6 @@ function updateMobile(data) {
     src += station(400, 2100, seoul[0].station) + train_up(335, 2100, seoul[0].up) + train_down(365, 2100, seoul[0].down);
     src += station(400, 2200, seoul[1].station) + train_up(335, 2200, seoul[1].up) + train_down(365, 2200, seoul[1].down);
     src += '</svg>';
-    src += '<hr width=98%><p>© 2022-2023 Dark Tornado, All rights reserved.</p>';
-    src += '<p>이 사이트는 네이버에서 제공하는 나눔글꼴을 사용해요.</p>';
     document.getElementById("map_mobile").innerHTML = src;
 }
 
