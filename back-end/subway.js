@@ -20,8 +20,8 @@ module.exports.loadData = async function(){
         result[i] = {
             station: e.name,
             id: e.id,
-            up: 0, //0 열차없음, 1 완행, 2 급행
-            down: 0
+            up: [], //0 열차없음, 1 완행, 2 급행
+            down: []
         };
         data.forEach((e)=> {
             if(result[i].id != e.statnId) return;
@@ -29,17 +29,22 @@ module.exports.loadData = async function(){
             var status = ['접근', '도착'][e.trainAt]; //0 접근, 1 도착
             var directAt = parseInt(e.directAt); //0 완행, 1 급행
             if (updown == 0) {
-                result[i].up = directAt + 1;
-                result[i].up_status = status;
-                result[i].up_train = e.trainNo;
-                result[i].up_terminal = e.statnTnm;
+                result[i].up.push({
+                    trainNo: e.trainNo,
+                    isExpress: directAt == 1,
+                    status: status,
+                    terminal: e.trainLineNm
+                });
             } else {
-                result[i].down = directAt + 1;
-                result[i].down_status = status;
-                result[i].down_train = e.trainNo;
-                result[i].down_terminal = e.statnTnm;
+                result[i].down.push({
+                    trainNo: e.trainNo,
+                    isExpress: directAt == 1,
+                    status: status,
+                    terminal: e.trainLineNm
+                });
             }
         });
     });
+
     return result;
 }
