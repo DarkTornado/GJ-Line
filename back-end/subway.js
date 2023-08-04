@@ -20,7 +20,7 @@ module.exports.loadData = async function(){
         result[i] = {
             station: e.name,
             id: e.id,
-            up: [], //0 열차없음, 1 완행, 2 급행
+            up: [],
             down: []
         };
         data.forEach((e)=> {
