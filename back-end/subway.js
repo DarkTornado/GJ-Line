@@ -45,6 +45,7 @@ module.exports.loadData = async function(){
             }
         });
     });
+    result.forEach((e) => delete e.id);
 
     return result;
 }
