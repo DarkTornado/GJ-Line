@@ -1,7 +1,5 @@
 const axios = require('axios');
-const xml2js = require('xml2js');
 const stationIds = require('./station-ids');
-const parser = new xml2js.Parser();
 
 module.exports.loadData = async function(){
     var url = 'https://bus.go.kr/sbus/bus/selectLcByRoute.do?_dc=1690280516841&subwayId=1063';
