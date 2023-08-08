@@ -70,10 +70,10 @@ function secondTick() {
         touch--;
     }
 }
+var currentData = null;
 function update() {
     tick = 20;
     fetch('https://api.darktornado.net/subway/gj-line')
-    //fetch('back-end url')
         .then((response) => response.text())
         .then((data) => {
             applyData(data);
@@ -95,6 +95,7 @@ function changeUI(map, alert) {
     document.querySelector('div#alert_area').style['display'] = alert;
 }
 function applyData(data) {
+    currentData = JSON.parse(data);
     data = JSON.parse(data);
     updatePC(data);
     updateMobile(data);
@@ -131,42 +132,68 @@ function updateMobile(data) {
     document.getElementById("map_mobile").innerHTML = src;
 }
 
-function train(x, y, dir, type, isUp) {
+function train(x, y, dir, train, isUp) {
     if (!isUp) dir += 2;
     if (dir > 4) dir -= 4;
-    var icons = ['no_train', 'train'];
     var dirs = [0, 90, 180, 270];
     var xx = [-35, 0, 35, 0];
     var yy = [0, -35, 0, 35];
     x = x - 20 + xx[dir];
     y = y - 20 + yy[dir];
-    return "<image xlink:href='images/" + icons[type] + ".svg' x='" + x + "' y='" + y + "' width='40px' transform='rotate(" + dirs[dir] + "," + (x + 20) + "," + (y + 20) + ")'/>";
+    return "<image xlink:href='images/" + getIcon(train) + ".svg' x='" + x + "' y='" + y + "' width='40px' transform='rotate(" + dirs[dir] + "," + (x + 20) + "," + (y + 20) + ")'/>";
 }
 
 function station(x, y, sta) {
-    return "<circle cx='"+x+"' cy='"+y+"' r='13' /><text x="+(x+50)+" y="+y+">"+sta+"</text>";
+    return "<circle cx='" + x + "' cy='" + y + "' r='13' /><text x=" + (x + 50) + " y=" + y + " onclick=showTrainInfo('" + sta + "');>" + sta + "</text>";
 }
 
-function train_up(x, y, type) {
-    var icons = ['no_train', 'train'];
+function train_up(x, y, train) {
     x += 15;
     y -= 20;
-    return "<image xlink:href='images/" + icons[type] + ".svg' x='" + x + "' y='" + y + "' width='40px'/>";
+    return "<image xlink:href='images/" + getIcon(train) + ".svg' x='" + x + "' y='" + y + "' width='40px'/>";
 }
 
-function train_down(x, y, type) {
-    var icons = ['no_train', 'train'];
+function train_down(x, y, train) {
     x += 45;
     y -= 20;
-    return "<image xlink:href='images/" + icons[type] + ".svg' x='" + x + "' y='" + y + "' width='40px' transform='rotate(180," + (x + 20) + "," + (y + 20) + ")'/>";
+    return "<image xlink:href='images/" + getIcon(train) + ".svg' x='" + x + "' y='" + y + "' width='40px' transform='rotate(180," + (x + 20) + "," + (y + 20) + ")'/>";
 }
 
+function getIcon(train) {
+    if (train.length == 0) return 'no_train';
+    
+    var all = false, exp = false;
+    train.forEach((e) => {
+        if (e.isExpress) exp = true;
+        else all = true;
+    });
+    if (exp && all) return 'trains';
+    if (exp && !all) return 'express_train';
+    return 'train';
+}
+
+function showTrainInfo(station) {
+    if (currentData == null) return;
+    currentData.forEach((e) => {
+        if (e.station != station) return;
+        var trains = [];
+        if (e.up.length > 0) e.up.forEach((e) => {
+            trains.push(e.terminal + (e.isExpress?'급':'') + '행 열차 '+ station + ' ' + e.status);
+        })
+        if (e.down.length > 0) e.down.forEach((e) => {
+            trains.push(e.terminal + (e.isExpress?'급':'') + '행 열차 '+ station + ' ' + e.status);
+        })
+        if (trains.length == 0) alert('해당 역에는 열차가 없어요');
+        else alert(trains.join('\n'));
+    })
+}
 
 function onIconClicked(station) {
-    alert('아이콘: ' + station);
+    // alert('아이콘: ' + station);
+    showTrainInfo(station);
 }
 
 function onTextClicked(element) {
-    alert('글자: ' + element.innerHTML.replace(/(<([^>]+)>)/g, ''));
+    // alert('글자: ' + element.innerHTML.replace(/(<([^>]+)>)/g, ''));
+    showTrainInfo(element.innerHTML.replace(/(<([^>]+)>)/g, ''));
 }
-

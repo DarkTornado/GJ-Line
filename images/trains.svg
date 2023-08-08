@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="500" height="500">
+  <polygon points="250 50 350 100 350 450 150 450 150 100"
+      stroke="#FF0000" fill="#FF0000" />
+  <polygon points="250 50 350 100 350 450 250 450"
+      stroke="#000000" fill="#000000" />
+</svg>
