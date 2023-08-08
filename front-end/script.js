@@ -70,6 +70,7 @@ function secondTick() {
         touch--;
     }
 }
+var currentData = null;
 function update() {
     tick = 20;
     fetch('back-end url')
@@ -94,6 +95,7 @@ function changeUI(map, alert) {
     document.querySelector('div#alert_area').style['display'] = alert;
 }
 function applyData(data) {
+    currentData = JSON.parse(data);
     data = JSON.parse(data);
     updatePC(data);
     updateMobile(data);
@@ -142,7 +144,7 @@ function train(x, y, dir, train, isUp) {
 }
 
 function station(x, y, sta) {
-    return "<circle cx='" + x + "' cy='" + y + "' r='13' /><text x=" + (x + 50) + " y=" + y + ">" + sta + "</text>";
+    return "<circle cx='" + x + "' cy='" + y + "' r='13' /><text x=" + (x + 50) + " y=" + y + " onclick=showTrainInfo('" + sta + "');>" + sta + "</text>";
 }
 
 function train_up(x, y, train) {
@@ -168,14 +170,30 @@ function getIcon(train) {
     if (exp && all) return 'trains';
     if (exp && !all) return 'express_train';
     return 'train';
-
 }
 
+function showTrainInfo(station) {
+    if (currentData == null) return;
+    currentData.forEach((e) => {
+        if (e.station != station) return;
+        var trains = [];
+        if (e.up.length > 0) e.up.forEach((e) => {
+            trains.push(e.terminal + (e.isExpress?'급':'') + '행 열차 '+ station + ' ' + e.status);
+        })
+        if (e.down.length > 0) e.down.forEach((e) => {
+            trains.push(e.terminal + (e.isExpress?'급':'') + '행 열차 '+ station + ' ' + e.status);
+        })
+        if (trains.length == 0) alert('해당 역에는 열차가 없어요');
+        else alert(trains.join('\n'));
+    })
+}
 
 function onIconClicked(station) {
-    alert('아이콘: ' + station);
+    // alert('아이콘: ' + station);
+    showTrainInfo(station);
 }
 
 function onTextClicked(element) {
-    alert('글자: ' + element.innerHTML.replace(/(<([^>]+)>)/g, ''));
+    // alert('글자: ' + element.innerHTML.replace(/(<([^>]+)>)/g, ''));
+    showTrainInfo(element.innerHTML.replace(/(<([^>]+)>)/g, ''));
 }
