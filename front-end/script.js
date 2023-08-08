@@ -130,34 +130,37 @@ function updateMobile(data) {
     document.getElementById("map_mobile").innerHTML = src;
 }
 
-function train(x, y, dir, type, isUp) {
+function train(x, y, dir, train, isUp) {
     if (!isUp) dir += 2;
     if (dir > 4) dir -= 4;
-    var icons = ['no_train', 'train'];
     var dirs = [0, 90, 180, 270];
     var xx = [-35, 0, 35, 0];
     var yy = [0, -35, 0, 35];
     x = x - 20 + xx[dir];
     y = y - 20 + yy[dir];
-    return "<image xlink:href='images/" + icons[type] + ".svg' x='" + x + "' y='" + y + "' width='40px' transform='rotate(" + dirs[dir] + "," + (x + 20) + "," + (y + 20) + ")'/>";
+    return "<image xlink:href='images/" + getIcon(train) + ".svg' x='" + x + "' y='" + y + "' width='40px' transform='rotate(" + dirs[dir] + "," + (x + 20) + "," + (y + 20) + ")'/>";
 }
 
 function station(x, y, sta) {
     return "<circle cx='"+x+"' cy='"+y+"' r='13' /><text x="+(x+50)+" y="+y+">"+sta+"</text>";
 }
 
-function train_up(x, y, type) {
-    var icons = ['no_train', 'train'];
+function train_up(x, y, train) {
     x += 15;
     y -= 20;
-    return "<image xlink:href='images/" + icons[type] + ".svg' x='" + x + "' y='" + y + "' width='40px'/>";
+    return "<image xlink:href='images/" + getIcon(train) + ".svg' x='" + x + "' y='" + y + "' width='40px'/>";
 }
 
-function train_down(x, y, type) {
-    var icons = ['no_train', 'train'];
+function train_down(x, y, train) {
     x += 45;
     y -= 20;
-    return "<image xlink:href='images/" + icons[type] + ".svg' x='" + x + "' y='" + y + "' width='40px' transform='rotate(180," + (x + 20) + "," + (y + 20) + ")'/>";
+    return "<image xlink:href='images/" + getIcon(train) + ".svg' x='" + x + "' y='" + y + "' width='40px' transform='rotate(180," + (x + 20) + "," + (y + 20) + ")'/>";
+}
+
+function getIcon(train) {
+    if (train.length == 0) return 'no_train';
+    return 'train';
+
 }
 
 
