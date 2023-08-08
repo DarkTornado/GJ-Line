@@ -142,7 +142,7 @@ function train(x, y, dir, train, isUp) {
 }
 
 function station(x, y, sta) {
-    return "<circle cx='"+x+"' cy='"+y+"' r='13' /><text x="+(x+50)+" y="+y+">"+sta+"</text>";
+    return "<circle cx='" + x + "' cy='" + y + "' r='13' /><text x=" + (x + 50) + " y=" + y + ">" + sta + "</text>";
 }
 
 function train_up(x, y, train) {
@@ -171,4 +171,3 @@ function onIconClicked(station) {
 function onTextClicked(element) {
     alert('글자: ' + element.innerHTML.replace(/(<([^>]+)>)/g, ''));
 }
-
