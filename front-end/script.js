@@ -159,6 +159,14 @@ function train_down(x, y, train) {
 
 function getIcon(train) {
     if (train.length == 0) return 'no_train';
+    
+    var all = false, exp = false;
+    train.forEach((e) => {
+        if (e.isExpress) exp = true;
+        else all = true;
+    });
+    if (exp && all) return 'trains';
+    if (exp && !all) return 'express_train';
     return 'train';
 
 }
