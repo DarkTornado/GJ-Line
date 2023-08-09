@@ -136,11 +136,11 @@ function train(x, y, dir, train, isUp) {
     if (!isUp) dir += 2;
     if (dir > 4) dir -= 4;
     var dirs = [0, 90, 180, 270];
-    var xx = [-35, 0, 35, 0];
-    var yy = [0, -35, 0, 35];
+    var xx = [-35, 10, 35, -10];
+    var yy = [-10, -35, 10, 35];
     x = x - 20 + xx[dir];
     y = y - 20 + yy[dir];
-    var result = "<image xlink:href='images/" + getIcon(train) + ".svg' x='" + x + "' y='" + y + "' width='40px' transform='rotate(" + dirs[dir] + "," + (x + 20) + "," + (y + 20) + ")'/>"
+    var result = "<image xlink:href='images/" + getIcon(train) + ".svg' x='" + x + "' y='" + y + "' width='60px' transform='rotate(" + dirs[dir] + "," + (x + 20) + "," + (y + 20) + ")'/>"
     if (train.length > 0) result += '<text style="text-anchor: middle; font-size: 16px;" x='+(x+20)+' y='+(y+20)+' fill=#888888>'+terminal(train[0].terminal)+'</text>';
     return result;
 }
