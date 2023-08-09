@@ -140,8 +140,17 @@ function train(x, y, dir, train, isUp) {
     var yy = [0, -35, 0, 35];
     x = x - 20 + xx[dir];
     y = y - 20 + yy[dir];
-    return "<image xlink:href='images/" + getIcon(train) + ".svg' x='" + x + "' y='" + y + "' width='40px' transform='rotate(" + dirs[dir] + "," + (x + 20) + "," + (y + 20) + ")'/>";
+    var result = "<image xlink:href='images/" + getIcon(train) + ".svg' x='" + x + "' y='" + y + "' width='40px' transform='rotate(" + dirs[dir] + "," + (x + 20) + "," + (y + 20) + ")'/>"
+    if (train.length > 0) result += '<text style="text-anchor: middle; font-size: 16px;" x='+(x+20)+' y='+(y+20)+' fill=#888888>'+terminal(train[0].terminal)+'</text>';
+    return result;
 }
+
+function terminal(term) {
+if (term == undefined) return '';
+if (term.length > 4) return term.slice(0, 3)+'..';
+return term;
+}
+
 
 function station(x, y, sta) {
     return "<circle cx='" + x + "' cy='" + y + "' r='13' /><text x=" + (x + 50) + " y=" + y + " onclick=showTrainInfo('" + sta + "');>" + sta + "</text>";
@@ -150,13 +159,17 @@ function station(x, y, sta) {
 function train_up(x, y, train) {
     x += 15;
     y -= 20;
-    return "<image xlink:href='images/" + getIcon(train) + ".svg' x='" + x + "' y='" + y + "' width='40px'/>";
+    var result = "<image xlink:href='images/" + getIcon(train) + ".svg' x='" + x + "' y='" + y + "' width='40px'/>";
+    if (train.length > 0) result += '<text style="text-anchor: middle; font-size: 16px;" x='+(x+20)+' y='+(y+20)+' fill=#FFFF00>'+terminal(train[0].terminal)+'</text>';
+    return result;
 }
 
 function train_down(x, y, train) {
     x += 45;
     y -= 20;
-    return "<image xlink:href='images/" + getIcon(train) + ".svg' x='" + x + "' y='" + y + "' width='40px' transform='rotate(180," + (x + 20) + "," + (y + 20) + ")'/>";
+    var result = "<image xlink:href='images/" + getIcon(train) + ".svg' x='" + x + "' y='" + y + "' width='40px' transform='rotate(180," + (x + 20) + "," + (y + 20) + ")'/>";
+    if (train.length > 0) result += '<text style="text-anchor: middle; font-size: 16px;" x='+(x+20)+' y='+(y+20)+' fill=#FF0000>'+terminal(train[0].terminal)+'</text>';
+    return result;
 }
 
 function getIcon(train) {
