@@ -140,8 +140,8 @@ function train(x, y, dir, train, isUp) {
     var yy = [-10, -35, 10, 35];
     x = x - 20 + xx[dir];
     y = y - 20 + yy[dir];
-    xx = [0, -10, 0, 10];
-    yy = [-10, 10, 10, -10];
+    xx = [10, -10, -10, 10];
+    yy = [10, 10, -10, -10];
     var tx = x + xx[dir] + 20;
     var ty = y + yy[dir] + 20;
     var result = "<image xlink:href='images/" + getIcon(train) + ".svg' x='" + x + "' y='" + y + "' width='60px' transform='rotate(" + dirs[dir] + "," + (x + 20) + "," + (y + 20) + ")'/>"
