@@ -2,7 +2,8 @@ const axios = require('axios');
 const stationIds = require('./station-ids');
 
 module.exports.loadData = async function(){
-    var url = 'https://bus.go.kr/sbus/bus/selectLcByRoute.do?_dc=1690280516841&subwayId=1063';
+    var ts = Date.now();
+    var url = 'http://bus.go.kr/sbus/bus/selectLcByRoute.do?_dc=' + ts + '&subwayId=1063';
     var response = await axios.get(url, {
         headers: {
             'referer': 'https://bus.go.kr/app/',
