@@ -1,4 +1,5 @@
 const axios = require('axios');
+const https = require('https');
 const stationIds = require('./station-ids');
 
 module.exports.loadData = async function(){
@@ -8,7 +9,10 @@ module.exports.loadData = async function(){
         headers: {
             'referer': 'https://bus.go.kr/app/',
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36'
-        }
+        },
+        httpsAgent: new https.Agent({
+          rejectUnauthorized: false
+        })
     });
 
     var data = response.data.ResponseVO.data.resultList;
