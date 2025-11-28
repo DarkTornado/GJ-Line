@@ -1,62 +1,3 @@
-var pos = [
-    {x: 200, y: 200, dir: 3, sta: '문산'},
-    {x: 400, y: 200, dir: 3, sta: '파주'},
-    {x: 600, y: 200, dir: 3, sta: '월롱'},
-    {x: 800, y: 200, dir: 3, sta: '금촌'},
-    {x: 1000, y: 200, dir: 3, sta: '금릉'},
-    {x: 1200, y: 200, dir: 3, sta: '운정'},
-    {x: 1400, y: 200, dir: 3, sta: '야당'},
-    {x: 1600, y: 200, dir: 3, sta: '탄현'},
-    {x: 1800, y: 200, dir: 3, sta: '일산'},
-    {x: 2000, y: 200, dir: 3, sta: '풍산'},
-    {x: 2200, y: 200, dir: 3, sta: '백마'},
-    {x: 2400, y: 200, dir: 3, sta: '곡산'},
-    {x: 2600, y: 200, dir: 3, sta: '대곡'},
-    {x: 2800, y: 400, dir: 0, sta: '능곡'},
-    {x: 2600, y: 600, dir: 1, sta: '행신'},
-    {x: 2400, y: 600, dir: 1, sta: '강매'},
-    {x: 2200, y: 600, dir: 1, sta: '화전'},
-    {x: 2000, y: 600, dir: 1, sta: '수색'},
-    {x: 1800, y: 600, dir: 1, sta: '디지털미디어시티'},
-    {x: 1600, y: 600, dir: 1, sta: '가좌'},
-    {x: 1400, y: 600, dir: 1, sta: '홍대입구'},
-    {x: 1200, y: 600, dir: 1, sta: '서강대'},
-    {x: 1000, y: 600, dir: 1, sta: '공덕'},
-    {x: 800, y: 600, dir: 1, sta: '효창공원앞'},
-    {x: 600, y: 600, dir: 1, sta: '용산'},
-    {x: 400, y: 600, dir: 1, sta: '이촌'},
-    {x: 200, y: 800, dir: 0, sta: '서빙고'},
-    {x: 400, y: 1000, dir: 3, sta: '한남'},
-    {x: 600, y: 1000, dir: 3, sta: '옥수'},
-    {x: 800, y: 1000, dir: 3, sta: '응봉'},
-    {x: 1000, y: 1000, dir: 3, sta: '왕십리'},
-    {x: 1200, y: 1000, dir: 3, sta: '청량리'},
-    {x: 1400, y: 1000, dir: 3, sta: '회기'},
-    {x: 1600, y: 1000, dir: 3, sta: '중랑'},
-    {x: 1800, y: 1000, dir: 3, sta: '상봉'},
-    {x: 2000, y: 1000, dir: 3, sta: '망우'},
-    {x: 2200, y: 1000, dir: 3, sta: '양원'},
-    {x: 2400, y: 1000, dir: 3, sta: '구리'},
-    {x: 2600, y: 1000, dir: 3, sta: '도농'},
-    {x: 2800, y: 1200, dir: 0, sta: '양정'},
-    {x: 2600, y: 1400, dir: 1, sta: '덕소'},
-    {x: 2400, y: 1400, dir: 1, sta: '도심'},
-    {x: 2200, y: 1400, dir: 1, sta: '팔당'},
-    {x: 2000, y: 1400, dir: 1, sta: '운길산'},
-    {x: 1800, y: 1400, dir: 1, sta: '양수'},
-    {x: 1600, y: 1400, dir: 1, sta: '신원'},
-    {x: 1400, y: 1400, dir: 1, sta: '국수'},
-    {x: 1200, y: 1400, dir: 1, sta: '아신'},
-    {x: 1000, y: 1400, dir: 1, sta: '오빈'},
-    {x: 800, y: 1400, dir: 1, sta: '양평'},
-    {x: 600, y: 1400, dir: 1, sta: '원덕'},
-    {x: 400, y: 1400, dir: 1, sta: '용문'},
-    {x: 200, y: 1400, dir: 1, sta: '지평'},
-    {x: 1400, y: 800, dir: 1, sta: '신촌'},
-    {x: 1200, y: 800, dir: 1, sta: '서울'}
-];
-
-
 var tick = 0, touch = 120;
 function secondTick() {
     if (tick > 0) {
@@ -108,8 +49,8 @@ function updatePC(data) {
     var src = '';
     if (map == null) map = document.getElementById("map").innerHTML;
     data.forEach((e, i) => {
-        src += train(pos[i].x, pos[i].y, pos[i].dir, e.up, true);
-        src += train(pos[i].x, pos[i].y, pos[i].dir, e.down, false);
+        src += train(STNS[i].x, STNS[i].y, STNS[i].dir, e.up, true);
+        src += train(STNS[i].x, STNS[i].y, STNS[i].dir, e.down, false);
     });
     document.getElementById("map").innerHTML = map + src;
 }
