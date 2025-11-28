@@ -43,16 +43,18 @@ function applyData(data) {
     console.log('updated');
 }
 
-var map = null;
+var MAP = null;
 
 function updatePC(data) {
+	var map = document.getElementById("map");
+    if (MAP == null) MAP = map.innerHTML;
+	
     var src = '';
-    if (map == null) map = document.getElementById("map").innerHTML;
     data.forEach((e, i) => {
         src += train(STNS[i].x, STNS[i].y, STNS[i].dir, e.up, true);
         src += train(STNS[i].x, STNS[i].y, STNS[i].dir, e.down, false);
     });
-    document.getElementById("map").innerHTML = map + src;
+    map.innerHTML = MAP + src;
 }
 
 function updateMobile(data) {
@@ -74,19 +76,18 @@ function updateMobile(data) {
 }
 
 function train(x, y, dir, train, isUp) {
-    if (!isUp) dir += 2;
-    if (dir > 4) dir -= 4;
-    var dirs = [0, 90, 180, 270];
-    var xx = [-35, 10, 35, -10];
-    var yy = [-10, -35, 10, 35];
-    x = x - 20 + xx[dir];
-    y = y - 20 + yy[dir];
-    xx = [10, -10, -10, 10];
-    yy = [10, 10, -10, -10];
-    var tx = x + xx[dir] + 20;
-    var ty = y + yy[dir] + 20;
+    if (!isUp) dir = (dir + 1) % 2;
+    var dirs = [-90, 90];
+    var dx = [-30, -10];
+    var dy = [20, -60];
+    x = x + dx[dir];
+    y = y + dy[dir];
+    var dx = [32, 8];
+    var dy = [12, 32];
+    var tx = x + dx[dir];
+    var ty = y + dy[dir];
     var result = "<image xlink:href='images/" + getIcon(train) + ".svg' x='" + x + "' y='" + y + "' width='60px' transform='rotate(" + dirs[dir] + "," + (x + 20) + "," + (y + 20) + ")'/>"
-    if (train.length > 0) result += '<text style="text-anchor: middle; font-size: 16px;" x='+tx+' y='+ty+' fill=#888888>'+terminal(train[0].terminal)+'</text>';
+    if (train.length > 0) result += '<text style="text-anchor: middle; font-size: 18px;" x='+tx+' y='+ty+' fill=#BDBDBD>'+terminal(train[0].terminal)+'</text>';
     return result;
 }
 
@@ -105,7 +106,7 @@ function train_up(x, y, train) {
     x += 15;
     y -= 20;
     var result = "<image xlink:href='images/" + getIcon(train) + ".svg' x='" + x + "' y='" + y + "' width='40px'/>";
-    if (train.length > 0) result += '<text style="text-anchor: middle; font-size: 16px;" x='+(x+20)+' y='+(y+20)+' fill=#FFFF00>'+terminal(train[0].terminal)+'</text>';
+    if (train.length > 0) result += '<text style="text-anchor: middle; font-size: 16px;" x='+(x+20)+' y='+(y+20)+' fill=#BDBDBD>'+terminal(train[0].terminal)+'</text>';
     return result;
 }
 
@@ -113,7 +114,7 @@ function train_down(x, y, train) {
     x += 45;
     y -= 20;
     var result = "<image xlink:href='images/" + getIcon(train) + ".svg' x='" + x + "' y='" + y + "' width='40px' transform='rotate(180," + (x + 20) + "," + (y + 20) + ")'/>";
-    if (train.length > 0) result += '<text style="text-anchor: middle; font-size: 16px;" x='+(x+20)+' y='+(y+20)+' fill=#FF0000>'+terminal(train[0].terminal)+'</text>';
+    if (train.length > 0) result += '<text style="text-anchor: middle; font-size: 16px;" x='+(x+20)+' y='+(y+20)+' fill=#BDBDBD>'+terminal(train[0].terminal)+'</text>';
     return result;
 }
 

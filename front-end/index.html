@@ -68,8 +68,8 @@
             </table>
         </div>
     </div>
-    <script src='./script.js'></script>
-<script>
+    <script>
+
 const CSV = `
 200,100,임진강,0
 400,100,운천,0
@@ -131,26 +131,26 @@ const CSV = `
 600,500,서울역,1
 `.trim();
 const STNS = [];
-const MAP = document.getElementById("map");
 
 (function(){
-var src = '';
-CSV.split("\n").forEach((e) => {
-if (e.trim() == '') return;
-e = e.split(',');
-var x = e[0]-0;
-var y = e[1]-0;
-var stn = e[2];
-STNS.push({
-    x: x,
-    y: y,
-    stn: stn,
-    dir: e[3]-0,
-});
-src += '<circle cx="' + x + '" cy="' + y + '" r="11" onClick="onIconClicked(\''+stn+'\');" />';
-src += '<text x=' + x + ' y=' + (y+60) + ' onClick="onTextClicked(\''+stn+'\');" class="middle">' + stn + '</text>';
-});
-MAP.innerHTML += src + '</svg>';
+    var src = '';
+    CSV.split("\n").forEach((e) => {
+        if (e.trim() == '') return;
+        e = e.split(',');
+        var x = e[0]-0;
+        var y = e[1]-0;
+        var stn = e[2];
+        STNS.push({
+            x: x,
+            y: y,
+            stn: stn,
+            dir: e[3]-0,
+        });
+        src += '<circle cx="' + x + '" cy="' + y + '" r="11" onClick="onIconClicked(\''+stn+'\');" />';
+        src += '<text x=' + x + ' y=' + (y+70) + ' onClick="onTextClicked(\''+stn+'\');" class="middle">' + stn + '</text>';
+    });
+    var map = document.getElementById("map");
+    map.innerHTML += src + '</svg>';
 })();
 
 function onIconClicked(stn) {
@@ -160,7 +160,9 @@ alert('아이콘: ' + stn);
 function onTextClicked(stn) {
 alert('글자: ' + stn);
 }
-</script>
+
+    </script>
+    <script src='./script.js'></script>
 
 
 </body>
