@@ -14,8 +14,7 @@ function secondTick() {
 var currentData = null;
 function update() {
     tick = 20;
-    fetch('https://api.darktornado.net/subway/gj-line')
-    //fetch('back-end url')
+    fetch('back-end url')
         .then((response) => response.text())
         .then((data) => {
             applyData(data);
