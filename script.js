@@ -1,62 +1,3 @@
-var pos = [
-    {x: 200, y: 200, dir: 3, sta: '문산'},
-    {x: 400, y: 200, dir: 3, sta: '파주'},
-    {x: 600, y: 200, dir: 3, sta: '월롱'},
-    {x: 800, y: 200, dir: 3, sta: '금촌'},
-    {x: 1000, y: 200, dir: 3, sta: '금릉'},
-    {x: 1200, y: 200, dir: 3, sta: '운정'},
-    {x: 1400, y: 200, dir: 3, sta: '야당'},
-    {x: 1600, y: 200, dir: 3, sta: '탄현'},
-    {x: 1800, y: 200, dir: 3, sta: '일산'},
-    {x: 2000, y: 200, dir: 3, sta: '풍산'},
-    {x: 2200, y: 200, dir: 3, sta: '백마'},
-    {x: 2400, y: 200, dir: 3, sta: '곡산'},
-    {x: 2600, y: 200, dir: 3, sta: '대곡'},
-    {x: 2800, y: 400, dir: 0, sta: '능곡'},
-    {x: 2600, y: 600, dir: 1, sta: '행신'},
-    {x: 2400, y: 600, dir: 1, sta: '강매'},
-    {x: 2200, y: 600, dir: 1, sta: '화전'},
-    {x: 2000, y: 600, dir: 1, sta: '수색'},
-    {x: 1800, y: 600, dir: 1, sta: '디지털미디어시티'},
-    {x: 1600, y: 600, dir: 1, sta: '가좌'},
-    {x: 1400, y: 600, dir: 1, sta: '홍대입구'},
-    {x: 1200, y: 600, dir: 1, sta: '서강대'},
-    {x: 1000, y: 600, dir: 1, sta: '공덕'},
-    {x: 800, y: 600, dir: 1, sta: '효창공원앞'},
-    {x: 600, y: 600, dir: 1, sta: '용산'},
-    {x: 400, y: 600, dir: 1, sta: '이촌'},
-    {x: 200, y: 800, dir: 0, sta: '서빙고'},
-    {x: 400, y: 1000, dir: 3, sta: '한남'},
-    {x: 600, y: 1000, dir: 3, sta: '옥수'},
-    {x: 800, y: 1000, dir: 3, sta: '응봉'},
-    {x: 1000, y: 1000, dir: 3, sta: '왕십리'},
-    {x: 1200, y: 1000, dir: 3, sta: '청량리'},
-    {x: 1400, y: 1000, dir: 3, sta: '회기'},
-    {x: 1600, y: 1000, dir: 3, sta: '중랑'},
-    {x: 1800, y: 1000, dir: 3, sta: '상봉'},
-    {x: 2000, y: 1000, dir: 3, sta: '망우'},
-    {x: 2200, y: 1000, dir: 3, sta: '양원'},
-    {x: 2400, y: 1000, dir: 3, sta: '구리'},
-    {x: 2600, y: 1000, dir: 3, sta: '도농'},
-    {x: 2800, y: 1200, dir: 0, sta: '양정'},
-    {x: 2600, y: 1400, dir: 1, sta: '덕소'},
-    {x: 2400, y: 1400, dir: 1, sta: '도심'},
-    {x: 2200, y: 1400, dir: 1, sta: '팔당'},
-    {x: 2000, y: 1400, dir: 1, sta: '운길산'},
-    {x: 1800, y: 1400, dir: 1, sta: '양수'},
-    {x: 1600, y: 1400, dir: 1, sta: '신원'},
-    {x: 1400, y: 1400, dir: 1, sta: '국수'},
-    {x: 1200, y: 1400, dir: 1, sta: '아신'},
-    {x: 1000, y: 1400, dir: 1, sta: '오빈'},
-    {x: 800, y: 1400, dir: 1, sta: '양평'},
-    {x: 600, y: 1400, dir: 1, sta: '원덕'},
-    {x: 400, y: 1400, dir: 1, sta: '용문'},
-    {x: 200, y: 1400, dir: 1, sta: '지평'},
-    {x: 1400, y: 800, dir: 1, sta: '신촌'},
-    {x: 1200, y: 800, dir: 1, sta: '서울'}
-];
-
-
 var tick = 0, touch = 120;
 function secondTick() {
     if (tick > 0) {
@@ -74,6 +15,7 @@ var currentData = null;
 function update() {
     tick = 20;
     fetch('https://api.darktornado.net/subway/gj-line')
+    //fetch('back-end url')
         .then((response) => response.text())
         .then((data) => {
             applyData(data);
@@ -102,61 +44,100 @@ function applyData(data) {
     console.log('updated');
 }
 
-var map = null;
+var MAP = null;
 
 function updatePC(data) {
+    var map = document.getElementById("map");
+    if (MAP == null) MAP = map.innerHTML;
+    
     var src = '';
-    if (map == null) map = document.getElementById("map").innerHTML;
     data.forEach((e, i) => {
-        src += train(pos[i].x, pos[i].y, pos[i].dir, e.up, true);
-        src += train(pos[i].x, pos[i].y, pos[i].dir, e.down, false);
+        src += train(STNS[i], e.up, true);
+        src += train(STNS[i], e.down, false);
     });
-    document.getElementById("map").innerHTML = map + src;
+    map.innerHTML = MAP + src;
 }
 
 function updateMobile(data) {
-    var src = '<svg width=100% viewBox="0 0 600 5350">';
-    src += '<polyline points="100,100 100,5300" fill="none" stroke="#77C4A3" />';
-    src += '<polyline points="100,2000 150,2050 350,2050 400,2100 400,2200" fill="none" stroke="#77C4A3" />';
+    var src = '<svg width=100% viewBox="0 0 600 5550">';
+    src += '<polyline points="100,100 100,5500" fill="none" stroke="#77C4A3" />';
+    src += '<polyline points="100,2200 150,2250 350,2250 400,2300 400,2400" fill="none" stroke="#77C4A3" />';
     var seoul = [data.pop()];
     seoul.unshift(data.pop());
     data.forEach((e, i) => {
         var y = (i + 1) * 100;
         src += station(100, y, e.station);
-        src += train_up(35, y, e.up);
-        src += train_down(65, y, e.down);
+        src += train_up(35, y, e.up, e.station);
+        src += train_down(65, y, e.down, e.station);
     });
-    src += station(400, 2100, seoul[0].station) + train_up(335, 2100, seoul[0].up) + train_down(365, 2100, seoul[0].down);
-    src += station(400, 2200, seoul[1].station) + train_up(335, 2200, seoul[1].up) + train_down(365, 2200, seoul[1].down);
+    src += station(400, 2300, seoul[0].station) + train_up(335, 2300, seoul[0].up, seoul[0].station) + train_down(365, 2300, seoul[0].down, seoul[0].station);
+    src += station(400, 2400, seoul[1].station) + train_up(335, 2400, seoul[1].up, seoul[1].station) + train_down(365, 2400, seoul[1].down, seoul[1].station);
     src += '</svg>';
     document.getElementById("map_mobile").innerHTML = src;
 }
 
-function train(x, y, dir, train, isUp) {
-    if (!isUp) dir += 2;
-    if (dir > 4) dir -= 4;
-    var dirs = [0, 90, 180, 270];
-    var xx = [-35, 0, 35, 0];
-    var yy = [0, -35, 0, 35];
-    x = x - 20 + xx[dir];
-    y = y - 20 + yy[dir];
-    return "<image xlink:href='images/" + getIcon(train) + ".svg' x='" + x + "' y='" + y + "' width='40px' transform='rotate(" + dirs[dir] + "," + (x + 20) + "," + (y + 20) + ")'/>";
+function train(stn, train, isUp) {
+    var dir = stn.dir;
+    if (!isUp) dir = (dir + 1) % 2;
+    var dirs = [-90, 90];
+    var dx = [-30, -10];
+    var dy = [20, -60];
+    var x = stn.x + dx[dir];
+    var y = stn.y + dy[dir];
+    var dx = [32, 8];
+    var dy = [12, 32];
+    var tx = x + dx[dir];
+    var ty = y + dy[dir];
+    var str = [];
+    train.forEach((e, i) => {
+        str.push(e.terminal + (e.isExpress?'행 급행':'행 ') + '열차 ' + stn.stn + ' ' + e.status);
+    });
+    str = str.join(',');
+    var result = "<image xlink:href='images/" + getIcon(train) + ".svg' x='" + x + "' y='" + y + "' width='60px' transform='rotate(" + dirs[dir] + "," + (x + 20) + "," + (y + 20) + ")' onclick=\'showTrain(\""+str+"\");\' />"
+    if (train.length > 0) result += '<text class=train_pc x='+tx+' y='+ty+' fill=#BDBDBD onclick=\'showTrain(\"'+str+'\");\' >'+terminal(train[0].terminal)+'</text>';
+    return result;
 }
 
-function station(x, y, sta) {
-    return "<circle cx='" + x + "' cy='" + y + "' r='13' /><text x=" + (x + 50) + " y=" + y + " onclick=showTrainInfo('" + sta + "');>" + sta + "</text>";
+function showTrain(str) {
+    if (str == '') str += '열차 없음';
+    alert(str.replace(/,/g, '\n'));
 }
 
-function train_up(x, y, train) {
-    x += 15;
-    y -= 20;
-    return "<image xlink:href='images/" + getIcon(train) + ".svg' x='" + x + "' y='" + y + "' width='40px'/>";
+function terminal(term) {
+    if (term == undefined) return '';
+    if (term.length > 4) return term.slice(0, 3)+'..';
+    return term;
 }
 
-function train_down(x, y, train) {
-    x += 45;
-    y -= 20;
-    return "<image xlink:href='images/" + getIcon(train) + ".svg' x='" + x + "' y='" + y + "' width='40px' transform='rotate(180," + (x + 20) + "," + (y + 20) + ")'/>";
+
+function station(x, y, stn) {
+    return "<circle cx='" + x + "' cy='" + y + "' r='13' /><text x=" + (x + 50) + " y=" + y + ">" + stn + "</text>";
+}
+
+function train_up(x, y, train, stn) {
+    x += 5;
+    y -= 30;
+    var str = [];
+    train.forEach((e, i) => {
+        str.push(e.terminal + (e.isExpress?'행 급행':'행 ') + '열차 ' + stn + ' ' + e.status);
+    });
+    str = str.join(',');
+    var result = "<image xlink:href='images/" + getIcon(train) + ".svg' x='" + x + "' y='" + y + "' width='60px' onclick=\'showTrain(\""+str+"\");\' />";
+    if (train.length > 0) result += '<text class=train_mobile x='+(x+20)+' y='+(y+20)+' fill=#BDBDBD transform="rotate(90,' + (x + 20) + "," + (y + 30) + ')"  onclick=\'showTrain(\"'+str+'\");\' >'+terminal(train[0].terminal)+'</text>';
+    return result;
+}
+
+function train_down(x, y, train, stn) {
+    x += 55;
+    y -= 10;
+    var str = [];
+    train.forEach((e, i) => {
+        str.push(e.terminal + (e.isExpress?'행 급행':'행 ') + '열차 ' + stn + ' ' + e.status);
+    });
+    str = str.join(',');
+    var result = "<image xlink:href='images/" + getIcon(train) + ".svg' x='" + x + "' y='" + y + "' width='60px' transform='rotate(180," + (x + 20) + "," + (y + 20) + ")'onclick=\'showTrain(\""+str+"\");\'  />";
+    if (train.length > 0) result += '<text class=train_mobile x='+(x+20)+' y='+(y+15)+' fill=#BDBDBD transform="rotate(90,' + (x + 20) + "," + (y + 5) + ')" onclick=\'showTrain(\"'+str+'\");\' >'+terminal(train[0].terminal)+'</text>';
+    return result;
 }
 
 function getIcon(train) {
@@ -172,28 +153,3 @@ function getIcon(train) {
     return 'train';
 }
 
-function showTrainInfo(station) {
-    if (currentData == null) return;
-    currentData.forEach((e) => {
-        if (e.station != station) return;
-        var trains = [];
-        if (e.up.length > 0) e.up.forEach((e) => {
-            trains.push(e.terminal + (e.isExpress?'급':'') + '행 열차 '+ station + ' ' + e.status);
-        })
-        if (e.down.length > 0) e.down.forEach((e) => {
-            trains.push(e.terminal + (e.isExpress?'급':'') + '행 열차 '+ station + ' ' + e.status);
-        })
-        if (trains.length == 0) alert('해당 역에는 열차가 없어요');
-        else alert(trains.join('\n'));
-    })
-}
-
-function onIconClicked(station) {
-    // alert('아이콘: ' + station);
-    showTrainInfo(station);
-}
-
-function onTextClicked(element) {
-    // alert('글자: ' + element.innerHTML.replace(/(<([^>]+)>)/g, ''));
-    showTrainInfo(element.innerHTML.replace(/(<([^>]+)>)/g, ''));
-}

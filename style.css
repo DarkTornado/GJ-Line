@@ -3,6 +3,7 @@ body {
     background-color: #FFFFFF;
 }
 div.title {
+    font-family: NanumSquareBold;
     background: #00BFA5;
     padding: 13px;
     box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.3);
@@ -48,6 +49,16 @@ text {
 }
 text.info {
     font-size: 30px;
+}
+text.train_pc {
+    text-anchor: middle;
+	font-size: 18px;
+    font-family: NanumSquareBold;
+}
+text.train_mobile {
+    text-anchor: middle;
+	font-size: 16px;
+    font-family: NanumSquareBold;
 }
 
 
