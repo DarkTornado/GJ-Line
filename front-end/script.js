@@ -87,7 +87,7 @@ function train(x, y, dir, train, isUp) {
     var tx = x + dx[dir];
     var ty = y + dy[dir];
     var result = "<image xlink:href='images/" + getIcon(train) + ".svg' x='" + x + "' y='" + y + "' width='60px' transform='rotate(" + dirs[dir] + "," + (x + 20) + "," + (y + 20) + ")'/>"
-    if (train.length > 0) result += '<text style="text-anchor: middle; font-size: 18px;" x='+tx+' y='+ty+' fill=#BDBDBD>'+terminal(train[0].terminal)+'</text>';
+    if (train.length > 0) result += '<text class=train_pc x='+tx+' y='+ty+' fill=#BDBDBD>'+terminal(train[0].terminal)+'</text>';
     return result;
 }
 
@@ -106,7 +106,7 @@ function train_up(x, y, train) {
     x += 5;
     y -= 30;
     var result = "<image xlink:href='images/" + getIcon(train) + ".svg' x='" + x + "' y='" + y + "' width='60px'/>";
-    if (train.length > 0) result += '<text style="text-anchor: middle; font-size: 16px;" x='+(x+20)+' y='+(y+20)+' fill=#BDBDBD transform="rotate(90,' + (x + 20) + "," + (y + 30) + ')">'+terminal(train[0].terminal)+'</text>';
+    if (train.length > 0) result += '<text class=train_mobile x='+(x+20)+' y='+(y+20)+' fill=#BDBDBD transform="rotate(90,' + (x + 20) + "," + (y + 30) + ')">'+terminal(train[0].terminal)+'</text>';
     return result;
 }
 
@@ -114,7 +114,7 @@ function train_down(x, y, train) {
     x += 55;
     y -= 10;
     var result = "<image xlink:href='images/" + getIcon(train) + ".svg' x='" + x + "' y='" + y + "' width='60px' transform='rotate(180," + (x + 20) + "," + (y + 20) + ")'/>";
-    if (train.length > 0) result += '<text style="text-anchor: middle; font-size: 16px;" x='+(x+20)+' y='+(y+15)+' fill=#BDBDBD transform="rotate(90,' + (x + 20) + "," + (y + 5) + ')">'+terminal(train[0].terminal)+'</text>';
+    if (train.length > 0) result += '<text class=train_mobile x='+(x+20)+' y='+(y+15)+' fill=#BDBDBD transform="rotate(90,' + (x + 20) + "," + (y + 5) + ')">'+terminal(train[0].terminal)+'</text>';
     return result;
 }
 
@@ -148,11 +148,12 @@ function showTrainInfo(station) {
 }
 
 function onIconClicked(station) {
-    // alert('아이콘: ' + station);
+    //alert('아이콘: ' + station);
+    showTrainInfo(station); //열차 아이콘의 투명한 부분이 원을 가려서 클릭 불가능
+}
+
+function onTextClicked(station) {
+    //alert('글자: ' + station);
     showTrainInfo(station);
 }
 
-function onTextClicked(element) {
-    // alert('글자: ' + element.innerHTML.replace(/(<([^>]+)>)/g, ''));
-    showTrainInfo(element.innerHTML.replace(/(<([^>]+)>)/g, ''));
-}

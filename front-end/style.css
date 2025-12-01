@@ -50,6 +50,16 @@ text {
 text.info {
     font-size: 30px;
 }
+text.train_pc {
+    text-anchor: middle;
+	font-size: 18px;
+    font-family: NanumSquareBold;
+}
+text.train_mobile {
+    text-anchor: middle;
+	font-size: 16px;
+    font-family: NanumSquareBold;
+}
 
 
 /* 반응형 처리 */
