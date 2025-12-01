@@ -103,18 +103,18 @@ function station(x, y, sta) {
 }
 
 function train_up(x, y, train) {
-    x += 15;
-    y -= 20;
-    var result = "<image xlink:href='images/" + getIcon(train) + ".svg' x='" + x + "' y='" + y + "' width='40px'/>";
-    if (train.length > 0) result += '<text style="text-anchor: middle; font-size: 16px;" x='+(x+20)+' y='+(y+20)+' fill=#BDBDBD>'+terminal(train[0].terminal)+'</text>';
+    x += 5;
+    y -= 30;
+    var result = "<image xlink:href='images/" + getIcon(train) + ".svg' x='" + x + "' y='" + y + "' width='60px'/>";
+    if (train.length > 0) result += '<text style="text-anchor: middle; font-size: 16px;" x='+(x+20)+' y='+(y+20)+' fill=#BDBDBD transform="rotate(90,' + (x + 20) + "," + (y + 30) + ')">'+terminal(train[0].terminal)+'</text>';
     return result;
 }
 
 function train_down(x, y, train) {
-    x += 45;
-    y -= 20;
-    var result = "<image xlink:href='images/" + getIcon(train) + ".svg' x='" + x + "' y='" + y + "' width='40px' transform='rotate(180," + (x + 20) + "," + (y + 20) + ")'/>";
-    if (train.length > 0) result += '<text style="text-anchor: middle; font-size: 16px;" x='+(x+20)+' y='+(y+20)+' fill=#BDBDBD>'+terminal(train[0].terminal)+'</text>';
+    x += 55;
+    y -= 10;
+    var result = "<image xlink:href='images/" + getIcon(train) + ".svg' x='" + x + "' y='" + y + "' width='60px' transform='rotate(180," + (x + 20) + "," + (y + 20) + ")'/>";
+    if (train.length > 0) result += '<text style="text-anchor: middle; font-size: 16px;" x='+(x+20)+' y='+(y+15)+' fill=#BDBDBD transform="rotate(90,' + (x + 20) + "," + (y + 5) + ')">'+terminal(train[0].terminal)+'</text>';
     return result;
 }
 
