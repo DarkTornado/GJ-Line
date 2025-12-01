@@ -58,9 +58,9 @@ function updatePC(data) {
 }
 
 function updateMobile(data) {
-    var src = '<svg width=100% viewBox="0 0 600 5350">';
-    src += '<polyline points="100,100 100,5300" fill="none" stroke="#77C4A3" />';
-    src += '<polyline points="100,2000 150,2050 350,2050 400,2100 400,2200" fill="none" stroke="#77C4A3" />';
+    var src = '<svg width=100% viewBox="0 0 600 5550">';
+    src += '<polyline points="100,100 100,5500" fill="none" stroke="#77C4A3" />';
+    src += '<polyline points="100,2200 150,2250 350,2250 400,2300 400,2400" fill="none" stroke="#77C4A3" />';
     var seoul = [data.pop()];
     seoul.unshift(data.pop());
     data.forEach((e, i) => {
@@ -69,8 +69,8 @@ function updateMobile(data) {
         src += train_up(35, y, e.up);
         src += train_down(65, y, e.down);
     });
-    src += station(400, 2100, seoul[0].station) + train_up(335, 2100, seoul[0].up) + train_down(365, 2100, seoul[0].down);
-    src += station(400, 2200, seoul[1].station) + train_up(335, 2200, seoul[1].up) + train_down(365, 2200, seoul[1].down);
+    src += station(400, 2300, seoul[0].station) + train_up(335, 2300, seoul[0].up) + train_down(365, 2300, seoul[0].down);
+    src += station(400, 2400, seoul[1].station) + train_up(335, 2400, seoul[1].up) + train_down(365, 2400, seoul[1].down);
     src += '</svg>';
     document.getElementById("map_mobile").innerHTML = src;
 }
